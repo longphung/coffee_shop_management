@@ -10,9 +10,13 @@ handleCoffeeRoute = (res) => {
   }, {
     "name": "Cà phê sữa", "price": 10000, "currency": "VND"
   }]
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json')
+  res.end(JSON.stringify(data));
 }
 
 const server = http.createServer((req, res) => {
+  console.log(`url: ${req.url} method: ${req.method}`)
   switch (req.url) {
     case "/":
       res.statusCode = 200;
