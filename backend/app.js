@@ -21,6 +21,13 @@ handleCoffeeRoute = (req, res) => {
       res.setHeader('Content-Type', 'application/json')
       req.on('data', (chunk) => {
         const reqData = JSON.parse(chunk.toString())
+        console.log(reqData)
+        if (!reqData.name) {
+          res.statusCode = 400;
+          res.end("Bad request, name is require")
+          return;
+        }
+        data.push(reqData)
         // TODO: add reqData to data
         res.end(JSON.stringify(data));
       })
