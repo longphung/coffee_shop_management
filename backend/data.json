@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Cà phê đá",
+    "price": 10000,
+    "currency": "VND"
+  },
+  {
+    "name": "Cà phê sữa",
+    "price": 10000,
+    "currency": "VND"
+  }
+]
