@@ -10,9 +10,18 @@ handleCoffeeRoute = (res) => {
   }, {
     "name": "Cà phê sữa", "price": 10000, "currency": "VND"
   }]
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify(data));
+  switch (res.method) {
+    case 'GET':
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify(data));
+      break;
+    case "POST":
+      // TODO: add another coffee type and return the whole array
+    default:
+      res.statusCode(405)
+      res.end("Method not allowed")
+  }
 }
 
 const server = http.createServer((req, res) => {
