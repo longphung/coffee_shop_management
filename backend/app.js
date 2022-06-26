@@ -4,7 +4,7 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 
-handleCoffeeRoute = (req,res) => {
+handleCoffeeRoute = (req, res) => {
   const data = [{
     "name": "Cà phê đá", "price": 10000, "currency": "VND"
   }, {
@@ -19,10 +19,12 @@ handleCoffeeRoute = (req,res) => {
     case "POST":
       res.statusCode = 201;
       res.setHeader('Content-Type', 'application/json')
-      data.push({"name": "Bạc Xỉu", "price": 10000, "currency": "VND"})
-      res.end(JSON.stringify(data));
+      req.on('data', (chunk) => {
+        const reqData = JSON.parse(chunk.toString())
+        // TODO: add reqData to data
+        res.end(JSON.stringify(data));
+      })
       break;
-      // TODO: add another coffee type and return the whole array
     default:
       res.statusCode = 405
       res.end("Method not allowed")
@@ -39,7 +41,7 @@ const server = http.createServer((req, res) => {
       res.end('Hello World');
       break;
     case "/coffee":
-      handleCoffeeRoute(req,res);
+      handleCoffeeRoute(req, res);
       break;
     default:
       res.statusCode = 404;
