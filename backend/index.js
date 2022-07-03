@@ -3,7 +3,7 @@
 // const express = require('express')
 import express from 'express'
 import morgan from 'morgan'
-import sampleCoffeeData from './data.json' assert {type:"json"}
+import sampleCoffeeData from './data.json' assert {type: "json"}
 // Create new express app
 const app = express()
 
@@ -11,12 +11,12 @@ app.use(morgan('tiny'))
 app.get('/', (req, res) => {
   res.send('Hello World')
 })
-app.get('/coffee', (req,res) => {
+app.get('/coffee', (req, res) => {
   res.json(sampleCoffeeData)
 })
-// TODO: Create GET to '/coffee', return sampleCoffeeData. Use express response.json() function
+// TODO: Create POST to '/coffee', take new coffee from request body, add it to the array and respond with the new array
 
 app.listen(3000, () => {
-  console.log('ready');
+    console.log('Server is listening on http://localhost:3000');
   }
 )
